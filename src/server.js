@@ -30,5 +30,7 @@ client.on('message', (channel, tags, message, viewer) => {
     if (message.toLowerCase() === '!hello') {
         //'user bonjour!'
         client.say(channel, `@${tags.username},bonjour!`);
+    } else if (message.toLowerCase() === '!pkmn') {
+        client.say(channel, `@${viewer.username},tu es ` + jsonToObject[Math.floor(Math.random() * 809 + 1) - 1].name["french"] + `.`);
     }
 })
