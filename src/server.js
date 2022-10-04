@@ -4,6 +4,10 @@ import tmi from "tmi.js";
 dotenv.config();
 
 const { TWITCH_USERNAME, TWITCH_PASSWORD, NODE_ENV } = process.env;
+const { readFileSync, writeFileSync } = require("fs");
+
+const jsonToObject = JSON.parse(readFileSync("./pokedex.json", "utf-8"));
+
 
 console.log("NODE_ENV", NODE_ENV);
 
