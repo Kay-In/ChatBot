@@ -18,12 +18,15 @@ const client = new tmi.Client({
     channels: ["#bynody_tv", "#aleksks_"]
 });
 
-client.connect();
-client.on('message', (channel, tags, message, self) => {
-    if (self) return;
 
-    console.log(`${tags['display-name']}: ${message}`);
+client.connect().then(() => {
+    console.log('Bot is connected to Twitch');
+    client.say('bynody_tv', `salut je viens de me connecter`);
+    client.say('aleksks_', `salut je viens de me connecter`);
+});
 
+client.on('message', (channel, tags, message, viewer) => {
+    console.log(`${tags["display-name"]}: ${message}`);
     if (message.toLowerCase() === '!hello') {
         //'user bonjour!'
         client.say(channel, `@${tags.username},bonjour!`);
