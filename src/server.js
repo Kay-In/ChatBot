@@ -1,14 +1,11 @@
 import dotenv from "dotenv";
 import tmi from "tmi.js";
-import readFileSync from "fs";
-import writeFileSync from "fs";
 
 dotenv.config();
 
 const { TWITCH_USERNAME, TWITCH_PASSWORD, NODE_ENV } = process.env;
 
 
-const jsonToObject = JSON.parse(readFileSync("./pokedex.json", "utf-8"));
 
 
 console.log("NODE_ENV", NODE_ENV);
@@ -36,7 +33,5 @@ client.on('message', (channel, tags, message, viewer) => {
     if (message.toLowerCase() === '!hello') {
         //'user bonjour!'
         client.say(channel, `@${tags.username},bonjour!`);
-    } else if (message.toLowerCase() === '!pkmn') {
-        client.say(channel, `@${viewer.username},tu es ` + jsonToObject[Math.floor(Math.random() * 809 + 1) - 1].name["french"] + `.`);
     }
 })
